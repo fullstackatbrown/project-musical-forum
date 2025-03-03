@@ -1,5 +1,45 @@
 "use client";
 
+/**
+ * Person Component
+ * ----------------
+ * Props:
+ * - orientation: "left" | "right"
+ *    → Flips the silhouette if "right".
+ *
+ * - imageProps: Settings for the SVG image.
+ *    - width: SVG width (default "401")
+ *    - height: SVG height (default "825")
+ *    - imageColor: Color of the silhouette (default "#CD82BB")
+ *    - imageClassName: Extra Tailwind CSS classes for the image container.
+ *
+ * - textProps: Settings for the overlaid text.
+ *    - text: The text to display.
+ *    - textColor: Color of the text (default "black").
+ *    - x, y: Position in SVG (default "50%" and "20%").
+ *            These values represent the center of the text container.
+ *    - fontSize: Font size (default "36px").
+ *    - fontWeight: Font weight (default "bold").
+ *    - textMaxWidth, textMaxHeight: Maximum width/height for the text area.
+ *    - textClassName: Extra Tailwind CSS classes for the text.
+ *
+ * Usage Example:
+ * <Person
+ *   orientation="right"
+ *   imageProps={{ width: "401", height: "825", imageColor: "#CD82BB", imageClassName: "absolute top-0 left-0" }}
+ *   textProps={{
+ *     text: "Hello World",
+ *     textColor: "white",
+ *     x: "50%",
+ *     y: "20%",
+ *     fontSize: "36px",
+ *     fontWeight: "bold",
+ *     textMaxWidth: "231px",
+ *     textMaxHeight: "121px",
+ *     textClassName: "break-all",
+ *   }}
+ * />
+ */
 function Person({ orientation = "left", imageProps = {}, textProps = {} }) {
   const {
     width = "401",
