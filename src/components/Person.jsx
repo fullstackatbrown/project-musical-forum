@@ -26,18 +26,8 @@
  * Usage Example:
  * <Person
  *   orientation="right"
- *   imageProps={{ width: "401", height: "825", imageColor: "#CD82BB", imageClassName: "absolute top-0 left-0" }}
- *   textProps={{
- *     text: "Hello World",
- *     textColor: "white",
- *     x: "50%",
- *     y: "20%",
- *     fontSize: "36px",
- *     fontWeight: "bold",
- *     textMaxWidth: "231px",
- *     textMaxHeight: "121px",
- *     textClassName: "break-all",
- *   }}
+ *   imageProps={{ width: "200", height: "100", imageColor: "#CD82BB", imageClassName: "absolute top-0 left-0" }}
+ *   textProps={{ text: "Hello World", textColor: "white", x: "60%", y: "30%", fontSize: "20px", fontWeight: "light", textClassName: "break-all"}}
  * />
  */
 function Person({ orientation = "left", imageProps = {}, textProps = {} }) {
@@ -64,7 +54,7 @@ function Person({ orientation = "left", imageProps = {}, textProps = {} }) {
     orientation === "right" ? `scale(-1, 1) translate(${-width}, 0)` : "";
 
   return (
-    <div className={`${imageClassName} overflow-visible`}>
+    <div className={`${imageClassName} overflow-visible `}>
       <svg
         width={width}
         height={height}
