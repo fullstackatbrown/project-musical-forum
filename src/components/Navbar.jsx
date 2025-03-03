@@ -1,32 +1,6 @@
-"use client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import React from "react";
 
-/**
- * Navbar Component
- *
- * Props:
- * @param {Array} navItems - An array of navigation items. Each item should be an object with:
- *                           - name: The text to display.
- *                           - path: The URL path to navigate to.
- * @param {boolean} [isAdmin=false] - If true, adds an additional "Show Poster" link.
- * @param {string} [bgColor="#000000"] - The background color of the navbar.
- * @param {string} [textColor="#FFFFFF"] - The text color for the navbar.
- *
- * Usage Example:
- *
- * import Navbar from "@/components/Navbar";
- *
- * const navItems = [
- *   { name: "About Us", path: "/aboutUs" },
- *   { name: "Meet the Board", path: "/meetTheBoard" },
- *   { name: "Alumni", path: "/alumni" },
- *   // ... other nav items
- * ];
- */
-
-export default function Navbar({
+function Navbar({
   navItems,
   isAdmin = false,
   bgColor = "#000000",
@@ -44,7 +18,6 @@ export default function Navbar({
   if (isAdmin) {
     navItems.push({ name: "Show Poster", path: "/showPoster" });
   }
-
   return (
     <nav
       className="fixed top-0 left-0 w-full z-50 shadow-md"
@@ -142,3 +115,5 @@ export default function Navbar({
     </nav>
   );
 }
+
+export default Navbar;
