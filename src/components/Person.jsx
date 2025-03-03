@@ -1,5 +1,3 @@
-"use client";
-
 /**
  * Person Component
  * ----------------
@@ -81,9 +79,10 @@ function Person({ orientation = "left", imageProps = {}, textProps = {} }) {
           >
             <div
               xmlns="http://www.w3.org/1999/xhtml"
-              className={`text-center text-[${fontSize}] font-${fontWeight} w-full flex items-center justify-center break-words whitespace-normal ${textClassName} `}
+              className={`text-center text-[${fontSize}] w-full flex items-center justify-center break-words whitespace-normal ${textClassName} `}
               style={{
                 color: textColor,
+                fontWeight,
               }}
             >
               {text}
