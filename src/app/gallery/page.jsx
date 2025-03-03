@@ -7,3 +7,5 @@ function page() {
 }
 
 export default page
+
+//2 percent of a specific 

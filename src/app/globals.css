@@ -20,3 +20,26 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+#left-third-div, #middle-third-div, #right-third-div {
+  position: relative;
+  overflow: visible; /* Allow overflow to make the spotlight visible */
+}
+
+#left-third-div::before, #middle-third-div::before, #right-third-div::before {
+  content: '';
+  position: absolute;
+  top: -50%; /* Position the spotlight above the div */
+  left: 50%;
+  width: 200%; /* Make the spotlight larger */
+  height: 200%; /* Make the spotlight larger */
+  background: radial-gradient(circle at center, rgba(227, 8, 158, 0.5) 0%, rgba(227, 8, 158, 0) 70%);
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none; 
+}
+
+#left-third-div:hover::before, #middle-third-div:hover::before, #right-third-div:hover::before {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
