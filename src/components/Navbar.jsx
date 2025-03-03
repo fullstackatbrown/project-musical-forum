@@ -1,4 +1,8 @@
+"use client";
 import React from "react";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 function Navbar({
   navItems,
@@ -25,16 +29,18 @@ function Navbar({
     >
       <div className="flex items-center px-4 w-full">
         {/* Logo & Mobile Toggle Button */}
-        <div className="flex items-center w-40 md:w-auto px-2 z-10 mx-auto md:mx-0 md:border-r-4 md:border-r-white">
+        <div className="flex items-center w-40 md:w-auto px-2 z-10 mx-auto md:mx-0">
           {/* Logo */}
           <Link href="/">
-            <h1 className="text-lg font-bold my-4 md:text-xl whitespace-nowrap">
-              Musical Forum
-            </h1>
+            <img
+              src="/mf-logo.jpeg"
+              alt="Musical Forum Logo"
+              className="h-20 w-20 md:h-24 md:w-24 object-contain"
+            />
           </Link>
           {/* Mobile Toggle Button */}
           <button
-            className="md:hidden p-2 w-8 h-8 flex items-center justify-center ml-auto"
+            className="md:hidden p-2 w-8 h-8 flex items-center justify-center"
             onClick={() => setIsMobileBarOpen(!isMobileBarOpen)}
           >
             {isMobileBarOpen ? (
