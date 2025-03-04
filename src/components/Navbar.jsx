@@ -4,11 +4,46 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+/**
+ * Navbar Component
+ *
+ * ## Props:
+ * @param {Object[]} navItems - List of navigation links.
+ * @param {string} navItems[].name - The display name of the navigation item.
+ * @param {string} navItems[].path - The corresponding route path for the navigation item.
+ *
+ * @param {boolean} [isAdmin=false] - Determines whether the admin-specific link ("Show Poster") is shown.
+ * @param {string} [bgColor="#000000"] - Background color of the navbar.
+ * @param {string} [textColor="#FFFFFF"] - Text color of the navbar.
+ * @param {string} [fontSize="text-[24px]"] - Tailwind class controlling the font size of nav items.
+ * @param {string} [logo="/mf-logo.jpeg"] - Logo image URL.
+ * @param {string} [textHoverColor="#CD82BB"] - Text color when hovering over navigation links.
+ * @param {string} [navItemWidth="w-[150px]"] - Tailwind class for the width of each nav item.
+ * @param {string} [navItemHeight="h-[80px]"] - Tailwind class for the height of each nav item.
+ *
+ * Example usage:
+ * const navItems = [
+ * { name: "About Us", path: "/aboutUs" },
+ * { name: "Meet the Board", path: "/meetTheBoard" },
+ * { name: "Alumni", path: "/alumni" },
+ * ......
+ * ]
+ *
+ * <Navbar navItems={navItems}/>
+ * or
+ * <Navbar navItems={navItems} isAdmin={true} bgColor="#333333" textColor="#FFFFFF" fontSize="text-[20px]" logo="/custom-logo.png" textHoverColor="#FF5733" navItemWidth="w-[120px]" navItemHeight="h-[60px]"/>
+ */
+
 function Navbar({
   navItems,
   isAdmin = false,
   bgColor = "#000000",
   textColor = "#FFFFFF",
+  fontSize = "text-[24px]",
+  logo = "/mf-logo.jpeg",
+  textHoverColor = "#CD82BB",
+  navItemWidth = "w-[150px]",
+  navItemHeight = "h-[80px]",
 }) {
   const navList = [...navItems];
 
@@ -20,22 +55,23 @@ function Navbar({
 
   //If the user is admin
   if (isAdmin) {
-    navItems.push({ name: "Show Poster", path: "/showPoster" });
+    navList.push({ name: "Show Poster", path: "/showPoster" });
   }
+
   return (
     <nav
       className="fixed top-0 left-0 w-full z-50 shadow-md"
       style={{ backgroundColor: bgColor, color: textColor }}
     >
-      <div className="flex items-center px-4 w-full">
+      <div className="flex items-center w-full">
         {/* Logo & Mobile Toggle Button */}
-        <div className="flex items-center w-40 md:w-auto px-2 z-10 mx-auto md:mx-0">
+        <div className="flex items-center min-w-[80px] z-10 mx-auto md:mx-0">
           {/* Logo */}
-          <Link href="/">
+          <Link href="/" className="flex items-center justify-center">
             <img
-              src="/mf-logo.jpeg"
+              src={logo}
               alt="Musical Forum Logo"
-              className="h-20 w-20 md:h-24 md:w-24 object-contain"
+              className="h-20 w-20 object-contain"
             />
           </Link>
           {/* Mobile Toggle Button */}
@@ -45,7 +81,7 @@ function Navbar({
           >
             {isMobileBarOpen ? (
               <svg
-                className="w-6 h-6"
+                className={`w-6 h-6 hover:stroke-[${textHoverColor}]`}
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -59,7 +95,7 @@ function Navbar({
               </svg>
             ) : (
               <svg
-                className="w-6 h-6"
+                className={`w-6 h-6 hover:stroke-[${textHoverColor}]`}
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -76,7 +112,7 @@ function Navbar({
         </div>
 
         {/* Desktop navbar */}
-        <div className="hidden md:flex font-bold flex-nowrap px-1 space-x-1 xl:space-x-2">
+        <div className="hidden md:flex">
           {navList.map((item) => {
             const isActive = pathname === item.path;
             return (
@@ -84,14 +120,12 @@ function Navbar({
                 key={item.name}
                 href={item.path}
                 title={item.name}
-                className={`
-                  py-1 text-xs hover:text-[#CD82BB] transition duration-300 truncate max-w-[60px] lg:text-[0.8rem] lg:overflow-visible lg:max-w-none xl:text-[0.9rem] 2xl:text-base
-                  ${isActive ? "text-[#CD82BB]" : ""}
+                className={`${navItemWidth} ${navItemHeight} flex items-center justify-center
+                  font-acad ${fontSize} leading-[2rem] tracking-normal text-center
+                  hover:text-[${textHoverColor}] transition duration-300
+                  ${isActive ? `text-[${textHoverColor}]` : ""}
                   `}
               >
-                <span className="mr-1 ml-2 lg:mr-0.5 lg:ml-1 xl:mr-1 xl:ml-2">
-                  ·
-                </span>
                 {item.name}
               </Link>
             );
@@ -102,14 +136,14 @@ function Navbar({
         {isMobileBarOpen && (
           <div
             style={{ backgroundColor: bgColor }}
-            className="md:hidden absolute left-0 top-0 w-full transition-all duration-300 overflow-hidden pt-10 pb-2"
+            className="md:hidden absolute left-0 top-8 w-full transition-all duration-300 overflow-hidden pt-12 pb-2"
           >
             <div className="w-40 flex flex-col mx-auto">
               {navList.map((item) => (
                 <Link
                   key={item.name}
                   href={item.path}
-                  className="block text-sm p-1 hover:bg-[#CD82BB] hover:text-black transition duration-300"
+                  className={`block text-sm py-1 pl-10 font-acad hover:text-[${textHoverColor}] transition duration-300`}
                 >
                   {item.name}
                 </Link>
