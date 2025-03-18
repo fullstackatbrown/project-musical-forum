@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import TopPane from "@/components/TopPane";
 import Image from "next/image";
 import ImageGallery from "@/components/ImageGallery";
@@ -21,6 +22,8 @@ export default function Home() {
     <div>
       <TopPane></TopPane>
       <ImageGallery images={images} />
+      <Footer />
+
     </div>
   );
 }
