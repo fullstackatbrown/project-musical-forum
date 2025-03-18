@@ -1,5 +1,6 @@
 import { Footer } from "@/components/Footer";
 import TopPane from "@/components/TopPane";
+import FeaturedEvents from "@/app/events/page";
 import Image from "next/image";
 import ImageGallery from "@/components/ImageGallery";
 
@@ -20,10 +21,10 @@ const images = [
 export default function Home() {
   return (
     <div>
+
       <TopPane></TopPane>
       <ImageGallery images={images} />
       <Footer />
-
     </div>
   );
 }
