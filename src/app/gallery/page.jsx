@@ -1,9 +1,12 @@
-import React from 'react'
+import MusicalSection from "@/components/MusicalSection";
+import React from "react";
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <>
+      <MusicalSection isBoard={true} />
+    </>
+  );
 }
 
-export default page
+export default page;

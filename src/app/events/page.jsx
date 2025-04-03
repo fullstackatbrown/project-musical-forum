@@ -1,4 +1,5 @@
-import {React} from "react";
+"use client";
+import { React } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
