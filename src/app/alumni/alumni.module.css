@@ -1,0 +1,92 @@
+.container {
+  min-height: 100vh;
+  background-color: #f3e1f6;
+  padding-bottom: 2rem;
+}
+
+.main {
+  max-width: 800px;
+  margin: 4rem auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #000;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin-bottom: 3rem;
+  color: #000;
+}
+
+.alumniList {
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.alumniItem {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.name {
+  color: #e75480;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.dots {
+  flex: 1;
+  margin: 0 0.5rem;
+  color: #e75480;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.year {
+  color: #e75480;
+  white-space: nowrap;
+}
+
+.ellipsis {
+  font-size: 2rem;
+  color: #000;
+  margin: 2rem 0;
+}
+
+.donateButton {
+  background-color: #e75480;
+  color: white;
+  border: none;
+  padding: 1rem 4rem;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.donateButton:hover {
+  background-color: #d64672;
+}
+
+.playbillSection {
+  background-color: #e75480;
+  padding: 1rem 0;
+  margin-top: 64px; /* This should match the navbar height */
+  width: 100%;
+}
+
+.playbillTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0;
+} 

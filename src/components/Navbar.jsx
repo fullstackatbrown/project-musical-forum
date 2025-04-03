@@ -3,7 +3,6 @@ import React from "react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-
 /**
  * Navbar Component
  *
@@ -34,7 +33,7 @@ import Link from "next/link";
  * <Navbar navItems={navItems} isAdmin={true} bgColor="#333333" textColor="#FFFFFF" fontSize="text-[20px]" logo="/custom-logo.png" textHoverColor="#FF5733" navItemWidth="w-[120px]" navItemHeight="h-[60px]"/>
  */
 
-function Navbar({
+export function Navbar({
   navItems,
   isAdmin = false,
   bgColor = "#000000",

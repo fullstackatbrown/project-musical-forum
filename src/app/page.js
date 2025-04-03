@@ -3,8 +3,10 @@ import TopPane from "@/components/TopPane";
 import FeaturedEvents from "@/app/events/page";
 import Image from "next/image";
 import ImageGallery from "@/components/ImageGallery";
+import Navbar from "@/components/Navbar";
+import { navItems } from "./alumni/page";
 
-const images = [
+export const images = [
   "https://brownmusicalforum.weebly.com/uploads/1/2/7/5/127563613/chris-karli-2_orig.jpeg",
   "https://brownmusicalforum.weebly.com/uploads/1/2/7/5/127563613/jake-anger.jpeg",
   "https://brownmusicalforum.weebly.com/uploads/1/2/7/5/127563613/b3a7350.jpeg",
@@ -21,7 +23,7 @@ const images = [
 export default function Home() {
   return (
     <div>
-
+      <Navbar navItems={navItems} />
       <TopPane></TopPane>
       <ImageGallery images={images} />
       <Footer />
