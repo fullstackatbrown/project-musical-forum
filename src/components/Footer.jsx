@@ -2,18 +2,24 @@ import { CSSProperties } from "react";
 import { TiSocialInstagram } from "react-icons/ti";
 import { FaFacebookF, FaEnvelope } from "react-icons/fa";
 
-export function Footer() {
+export function Footer({
+  footerClassName = "",
+  contentClassName = "",
+  textClassName = "",
+}) {
   return (
-    <footer className="bg-[#f2f2f2] p-6 px-12">
-      <div className="flex justify-between items-center max-w-[1200px] mx-auto">
-        <div className="flex text-left text-[#333]">
+    <footer className={`bg-[#f2f2f2] p-6 px-12 ${footerClassName}`}>
+      <div
+        className={`flex justify-between items-center max-w-[1200px] mx-auto text-[#333] ${contentClassName}`}
+      >
+        <div className={`flex text-left ${textClassName}`}>
           <strong>
             Contact Us:
             <br />
             ​brownmusicalforum@gmail.com
           </strong>
         </div>
-        <div className="flex items-center gap-5 text-[#333] ">
+        <div className="flex items-center gap-5">
           <a
             href="https://www.facebook.com/musicalforum/"
             target="_blank"

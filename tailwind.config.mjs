@@ -13,6 +13,7 @@ export default {
       },
       fontFamily: {
         acad: ["Afacad", "sans-serif"],
+        karantina: ["var(--font-karantina)"],
       },
     },
   },

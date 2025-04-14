@@ -45,6 +45,9 @@ export function Navbar({
   navItemHeight = "h-[80px]",
 }) {
   const navList = [...navItems];
+  const half = Math.ceil(navList.length / 2);
+  const leftItems = navList.slice(0, half);
+  const rightItems = navList.slice(half);
 
   //Mobile navbar toggle button control
   const [isMobileBarOpen, setIsMobileBarOpen] = useState(false);
@@ -62,9 +65,30 @@ export function Navbar({
       className="fixed top-0 left-0 w-full z-50 shadow-md"
       style={{ backgroundColor: bgColor, color: textColor }}
     >
-      <div className="flex items-center w-full">
+      <div className="flex md:grid md:grid-cols-[1fr_auto_1fr] items-center w-full">
+        {/* Desktop left navbar */}
+        <div className="hidden md:flex justify-end gap-8">
+          {leftItems.map((item) => {
+            const isActive = pathname === item.path;
+            return (
+              <Link
+                key={item.name}
+                href={item.path}
+                title={item.name}
+                className={`${navItemWidth} ${navItemHeight} flex items-center justify-center
+                  font-acad ${fontSize} leading-[2rem] tracking-normal text-center
+                  hover:text-[${textHoverColor}] transition duration-300 uppercase
+                  ${isActive ? `text-[${textHoverColor}]` : ""}
+                  `}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
+        </div>
+
         {/* Logo & Mobile Toggle Button */}
-        <div className="flex items-center min-w-[80px] z-10 mx-auto md:mx-0">
+        <div className="w-full md:col-start-2 flex justify-center relative z-10">
           {/* Logo */}
           <Link href="/" className="flex items-center justify-center">
             <img
@@ -111,8 +135,8 @@ export function Navbar({
         </div>
 
         {/* Desktop navbar */}
-        <div className="hidden md:flex">
-          {navList.map((item) => {
+        <div className="hidden md:flex justify-start gap-8">
+          {rightItems.map((item) => {
             const isActive = pathname === item.path;
             return (
               <Link
@@ -121,7 +145,7 @@ export function Navbar({
                 title={item.name}
                 className={`${navItemWidth} ${navItemHeight} flex items-center justify-center
                   font-acad ${fontSize} leading-[2rem] tracking-normal text-center
-                  hover:text-[${textHoverColor}] transition duration-300
+                  hover:text-[${textHoverColor}] transition duration-300 uppercase
                   ${isActive ? `text-[${textHoverColor}]` : ""}
                   `}
               >
