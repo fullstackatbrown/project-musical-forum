@@ -11,7 +11,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        acad: ["Afacad", "sans-serif"],
+        karantina: ["var(--font-karantina)"],
+      },
     },
   },
+  safelist: ["font-acad"],
   plugins: [],
 };

@@ -1,9 +1,16 @@
-import React from 'react'
+import ImageGallery from "@/components/ImageGallery";
+import Navbar from "@/components/Navbar";
+import React from "react";
+import { images } from "../page";
+import { navItems } from "@/data/navItems";
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <>
+      <Navbar navItems={navItems} />
+      <ImageGallery images={images}></ImageGallery>
+    </>
+  );
 }
 
-export default page
+export default page;
