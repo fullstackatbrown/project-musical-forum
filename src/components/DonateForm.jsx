@@ -104,7 +104,7 @@ function DonateForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="min-w-[400px] max-w-xl">
+    <form onSubmit={handleSubmit} className="min-w-[350px] max-w-md space-y-1">
       <Snackbar
         open={showSuccess}
         autoHideDuration={3000}
@@ -118,45 +118,52 @@ function DonateForm() {
       </Snackbar>
 
       {formRows.map(({ name, label, type }) => (
-        <FormControl key={name} error={Boolean(errors[name]) && touched[name]}>
-          <FormLabel className="text-base">{label}</FormLabel>
+        <FormControl
+          key={name}
+          error={Boolean(errors[name]) && touched[name]}
+          size="sm"
+          sx={{ marginTop: "0!important" }}
+        >
+          <FormLabel className="text-sm">{label}</FormLabel>
           {type === "textarea" ? (
             <Textarea
               name={name}
               placeholder="Value"
               value={formData[name]}
               onChange={handleChange}
-              minRows={3}
-              className="bg-white"
+              minRows={2}
+              className="bg-white text-sm"
             />
           ) : (
-            <Input
-              name={name}
-              placeholder="Value"
-              value={formData[name]}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className="bg-white"
-            />
+            <>
+              <Input
+                name={name}
+                placeholder="Value"
+                value={formData[name]}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className="bg-white text-sm"
+              />
+              <FormHelperText className="min-h-5 text-xs mt-[2px]">
+                {errors[name] && touched[name] ? (
+                  <>
+                    <InfoOutlined
+                      fontSize="small"
+                      sx={{ mr: 1, verticalAlign: "middle" }}
+                    />
+                    {errors[name]}
+                  </>
+                ) : (
+                  <span className="invisible" />
+                )}
+              </FormHelperText>
+            </>
           )}
-          <FormHelperText className="min-h-6">
-            {errors[name] && touched[name] ? (
-              <>
-                <InfoOutlined
-                  fontSize="small"
-                  sx={{ mr: 1, verticalAlign: "middle" }}
-                />
-                {errors[name]}
-              </>
-            ) : (
-              <span className="invisible" />
-            )}
-          </FormHelperText>
         </FormControl>
       ))}
       <button
         type="submit"
-        className="w-full bg-black text-white rounded-lg p-2"
+        className="w-full bg-black text-white rounded-lg p-1 text-sm !mt-3"
       >
         Continue
       </button>
