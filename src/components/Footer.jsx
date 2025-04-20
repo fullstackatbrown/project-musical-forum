@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
-// import { TiSocialInstagram } from "react-icons/ti";
-// import { FaFacebookF, FaEnvelope } from "react-icons/fa";
+import { TiSocialInstagram } from "react-icons/ti";
+import { FaFacebookF, FaEnvelope } from "react-icons/fa";
 
 export function Footer({
   footerClassName = "",
