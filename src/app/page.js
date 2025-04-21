@@ -41,6 +41,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Image Gallery Carousel */}
+      <section>
+        <ImageGallery images={images} />
+      </section>
+
       {/* About Section */}
       <section className="bg-[#CD82BB] text-black px-8 py-16 text-center">
         <h2 className="text-3xl font-bold mb-4">
@@ -69,7 +74,6 @@ export default function Home() {
           Pulitzer Prize-winning Next to Normal.
         </p>
         <div className="mt-6 flex justify-center gap-6 text-xl">
-          {/* Add your social icons here using lucide-react or react-icons */}
           <a href="#" aria-label="Instagram">
             📷
           </a>
