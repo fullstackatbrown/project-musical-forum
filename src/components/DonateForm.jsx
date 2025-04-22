@@ -9,8 +9,24 @@ import {
   Textarea,
   Snackbar,
 } from "@mui/joy";
-import InfoOutlined from "@mui/icons-material/InfoOutlined";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+// Inline SVG icons
+const InfoIcon = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+             10-4.48 10-10S17.52 2 12 2zm0 18
+             c-4.41 0-8-3.59-8-8s3.59-8 8-8
+             8 3.59 8 8-3.59 8-8 8z"/>
+    <path d="M11 17h2v-6h-2v6zm0-8h2V7h-2v2z"/>
+  </svg>
+);
+
+const CheckCircleIconInline = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+             10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5
+             1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/>
+  </svg>
+);
 
 function DonateForm() {
   const formRows = [
@@ -114,7 +130,7 @@ function DonateForm() {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         className="top-28"
       >
-        <CheckCircleIcon /> Thank you! Your donation has been submitted.
+        <CheckCircleIconInline className="inline-block mr-1 align-middle w-5 h-5 text-green-500" /> Thank you! Your donation has been submitted.
       </Snackbar>
 
       {formRows.map(({ name, label, type }) => (
@@ -147,10 +163,7 @@ function DonateForm() {
               <FormHelperText className="min-h-5 text-xs mt-[2px]">
                 {errors[name] && touched[name] ? (
                   <>
-                    <InfoOutlined
-                      fontSize="small"
-                      sx={{ mr: 1, verticalAlign: "middle" }}
-                    />
+                    <InfoIcon className="inline-block mr-1 align-middle w-4 h-4" />
                     {errors[name]}
                   </>
                 ) : (

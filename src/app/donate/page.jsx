@@ -39,9 +39,9 @@ function page() {
         </svg>
 
         <div className="relative flex flex-col items-center max-w-2xl px-4 mb-2">
-          <h1 className="font-karantina text-6xl mt-2 mb-6">Donate</h1>
+          <h1 className="text-black font-karantina text-6xl mt-2 mb-6">Donate</h1>
           <DonateForm />
-          <h1 className="font-karantina text-6xl my-20">
+          <h1 className="text-black  font-karantina text-6xl my-20">
             What you'll contribute to...
           </h1>
           <MusicalSection isBoard={true} withArrows={true} />

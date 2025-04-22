@@ -39,8 +39,8 @@ function page() {
           />
         </svg>
         <div className="relative flex flex-col items-center max-w-2xl px-4 mb-2">
-          <h1 className="font-karantina text-6xl mt-2 mb-6">Photo Gallery</h1>
-          <h2 className="font-karantina text-1xl">Musical Name</h2>
+          <h1 className="font-karantina text-black text-6xl mt-2 mb-6">Photo Gallery</h1>
+          <h2 className="font-karantina text-black text-2xl">Spring Awakening Spring 2023</h2>
           <ImageGallery images={images}></ImageGallery>
           <MusicalSection isBoard={true} withArrows={true} />
         </div>

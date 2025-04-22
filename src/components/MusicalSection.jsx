@@ -1,17 +1,27 @@
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
-import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
-
 function MusicalSection({ isBoard = false, withArrows = false }) {
+  // Inline arrow SVGs
+  const ArrowBack = (props) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+    </svg>
+  );
+
+  const ArrowForward = (props) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+    </svg>
+  );
+
   const sectionData = [
     {
       id: 1,
-      title: "Musical One",
+      title: "Jesus Christ Superstar Spring 2024",
       image:
         "https://brownmusicalforum.weebly.com/uploads/1/2/7/5/127563613/chris-karli-2_orig.jpeg",
     },
     {
       id: 2,
-      title: "Musical Two",
+      title: "Little Shop of Horrors Fall 2023",
       image:
         "https://brownmusicalforum.weebly.com/uploads/1/2/7/5/127563613/jake-anger.jpeg",
     },
@@ -23,16 +33,10 @@ function MusicalSection({ isBoard = false, withArrows = false }) {
           {withArrows && (
             <>
               <button className="absolute -left-20 top-1/2 -translate-y-1/2 flex items-center justify-center">
-                <ArrowBackIosNewOutlinedIcon
-                  sx={{ fontSize: 50 }}
-                  className="text-white"
-                />
+                <ArrowBack sx={{ fontSize: 50 }} className="text-white" />
               </button>
               <button className="absolute -right-20 top-1/2 -translate-y-1/2 flex items-center justify-center">
-                <ArrowForwardIosOutlinedIcon
-                  sx={{ fontSize: 50 }}
-                  className="text-white"
-                />
+                <ArrowForward sx={{ fontSize: 50 }} className="text-white" />
               </button>
             </>
           )}

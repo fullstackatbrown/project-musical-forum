@@ -3,8 +3,20 @@ import React from "react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
+// import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+// import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
+// Inline arrow SVGs
+const ArrowDown = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z" />
+  </svg>
+);
+
+const ArrowUp = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M16.59 15.41 12 10.83l-4.59 4.58L6 14l6-6 6 6z" />
+  </svg>
+);
 /**
  * Navbar Component
  *
@@ -199,16 +211,11 @@ export function Navbar({
                       className="w-full text-left text-sm py-1 pl-[4.3rem] font-acad flex items-center hover:text-[#CD82BB] transition duration-300"
                     >
                       {item.name}
-                      {hasDropdown &&
-                        (isOpen ? (
-                          <KeyboardArrowUpOutlinedIcon
-                            sx={{ fontSize: "small" }}
-                          />
-                        ) : (
-                          <KeyboardArrowDownOutlinedIcon
-                            sx={{ fontSize: "small" }}
-                          />
-                        ))}
+                      {hasDropdown && (
+                        isOpen
+                          ? <ArrowUp className="w-4 h-4 ml-2" />
+                          : <ArrowDown className="w-4 h-4 ml-2" />
+                      )}
                     </button>
 
                     {hasDropdown && isOpen && (
