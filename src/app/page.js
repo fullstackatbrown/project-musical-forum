@@ -41,8 +41,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Image Gallery Carousel */}
+      <section>
+        <ImageGallery images={images} />
+      </section>
+
       {/* About Section */}
-      <section className="bg-[#f7f0ea] text-black px-8 py-16 text-center">
+      <section className="bg-[#CD82BB] text-black px-8 py-16 text-center">
         <h2 className="text-3xl font-bold mb-4">
           About the Brown Musical Forum
         </h2>
@@ -69,7 +74,6 @@ export default function Home() {
           Pulitzer Prize-winning Next to Normal.
         </p>
         <div className="mt-6 flex justify-center gap-6 text-xl">
-          {/* Add your social icons here using lucide-react or react-icons */}
           <a href="#" aria-label="Instagram">
             📷
           </a>
@@ -83,7 +87,7 @@ export default function Home() {
       </section>
 
       {/* What's Up Section */}
-      <section className="bg-[#3b1d1a] text-white px-6 py-12 text-center">
+      <section className="bg-[#000000] text-white px-6 py-12 text-center">
         <h3 className="text-2xl font-bold mb-4">What’s Up With Us?</h3>
         <p className="max-w-xl mx-auto mb-6">
           We are currently in the process of planning our next production! Stay
