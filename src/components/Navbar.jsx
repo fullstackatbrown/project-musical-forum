@@ -3,6 +3,8 @@ import React from "react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 /**
  * Navbar Component
  *
@@ -45,9 +47,13 @@ export function Navbar({
   navItemHeight = "h-[80px]",
 }) {
   const navList = [...navItems];
+  const half = Math.ceil(navList.length / 2);
+  const leftItems = navList.slice(0, half);
+  const rightItems = navList.slice(half);
 
   //Mobile navbar toggle button control
   const [isMobileBarOpen, setIsMobileBarOpen] = useState(false);
+  const [openIndex, setOpenIndex] = useState(null);
 
   // Get the current URL path to determine the active link.
   const pathname = usePathname();
@@ -57,14 +63,68 @@ export function Navbar({
     navList.push({ name: "Show Poster", path: "/showPoster" });
   }
 
+  const renderNavItem = (item) => {
+    const isActive = pathname === item.path;
+
+    if (item.dropdown) {
+      return (
+        <div
+          key={item.name}
+          className={`relative group ${navItemWidth} ${navItemHeight} flex items-center justify-center`}
+        >
+          <span
+            className={`font-acad ${fontSize} uppercase cursor-default hover:text-[${textHoverColor}]`}
+          >
+            {item.name}
+          </span>
+          <div
+            className="absolute top-full left-1/2 -translate-x-1/2 hidden group-hover:block
+          bg-black shadow-lg z-50 text-white whitespace-nowrap min-w-[200px] text-sm font-acad
+          transition-all duration-300 ease-in-out opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0"
+          >
+            {item.dropdown.map((subItem) => (
+              <Link
+                key={subItem.name}
+                href={subItem.path}
+                className="block px-4 py-2 hover:bg-[#CD82BB]/80 transition-colors duration-200"
+              >
+                {subItem.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <Link
+        key={item.name}
+        href={item.path}
+        title={item.name}
+        className={`${navItemWidth} ${navItemHeight} flex items-center justify-center
+        font-acad ${fontSize} leading-[2rem] tracking-normal text-center
+        hover:text-[${textHoverColor}] transition duration-300 uppercase
+        ${isActive ? `text-[${textHoverColor}]` : ""}
+        `}
+      >
+        {item.name}
+      </Link>
+    );
+  };
+
   return (
     <nav
       className="fixed top-0 left-0 w-full z-50 shadow-md"
       style={{ backgroundColor: bgColor, color: textColor }}
     >
-      <div className="flex items-center w-full">
+      <div className="flex lg:grid lg:grid-cols-[1fr_auto_1fr] items-center w-full">
+        {/* Desktop left navbar */}
+        <div className="hidden lg:flex justify-end gap-8">
+          {leftItems.map(renderNavItem)}
+        </div>
+
         {/* Logo & Mobile Toggle Button */}
-        <div className="flex items-center min-w-[80px] z-10 mx-auto md:mx-0">
+        <div className="w-full lg:col-start-2 flex justify-center items-center relative z-10">
           {/* Logo */}
           <Link href="/" className="flex items-center justify-center">
             <img
@@ -75,7 +135,7 @@ export function Navbar({
           </Link>
           {/* Mobile Toggle Button */}
           <button
-            className="md:hidden p-2 w-8 h-8 flex items-center justify-center"
+            className="lg:hidden p-2 w-8 h-8 flex items-center justify-center"
             onClick={() => setIsMobileBarOpen(!isMobileBarOpen)}
           >
             {isMobileBarOpen ? (
@@ -111,42 +171,63 @@ export function Navbar({
         </div>
 
         {/* Desktop navbar */}
-        <div className="hidden md:flex">
-          {navList.map((item) => {
-            const isActive = pathname === item.path;
-            return (
-              <Link
-                key={item.name}
-                href={item.path}
-                title={item.name}
-                className={`${navItemWidth} ${navItemHeight} flex items-center justify-center
-                  font-acad ${fontSize} leading-[2rem] tracking-normal text-center
-                  hover:text-[${textHoverColor}] transition duration-300
-                  ${isActive ? `text-[${textHoverColor}]` : ""}
-                  `}
-              >
-                {item.name}
-              </Link>
-            );
-          })}
+        <div className="hidden lg:flex justify-start gap-8">
+          {rightItems.map(renderNavItem)}
         </div>
 
         {/* Mobile navbar */}
         {isMobileBarOpen && (
           <div
             style={{ backgroundColor: bgColor }}
-            className="md:hidden absolute left-0 top-8 w-full transition-all duration-300 overflow-hidden pt-12 pb-2"
+            className="lg:hidden absolute left-0 top-8 w-full transition-all duration-300 overflow-hidden pt-12 pb-2"
           >
-            <div className="w-40 flex flex-col mx-auto">
-              {navList.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.path}
-                  className={`block text-sm py-1 pl-10 font-acad hover:text-[${textHoverColor}] transition duration-300`}
-                >
-                  {item.name}
-                </Link>
-              ))}
+            <div className="w-52 flex flex-col mx-auto">
+              {navList.map((item, index) => {
+                const hasDropdown = item.dropdown && item.dropdown.length > 0;
+                const isOpen = openIndex === index;
+
+                return (
+                  <div key={item.name}>
+                    <button
+                      onClick={() => {
+                        if (hasDropdown) {
+                          setOpenIndex(isOpen ? null : index);
+                        } else {
+                          setIsMobileBarOpen(false);
+                        }
+                      }}
+                      className="w-full text-left text-sm py-1 pl-[4.3rem] font-acad flex items-center hover:text-[#CD82BB] transition duration-300"
+                    >
+                      {item.name}
+                      {hasDropdown &&
+                        (isOpen ? (
+                          <KeyboardArrowUpOutlinedIcon
+                            sx={{ fontSize: "small" }}
+                          />
+                        ) : (
+                          <KeyboardArrowDownOutlinedIcon
+                            sx={{ fontSize: "small" }}
+                          />
+                        ))}
+                    </button>
+
+                    {hasDropdown && isOpen && (
+                      <div className="pl-[4.5rem] space-y-1 mt-1">
+                        {item.dropdown.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            href={subItem.path}
+                            className="block text-sm py-1 font-acad hover:text-[#CD82BB] transition duration-300"
+                            onClick={() => setIsMobileBarOpen(false)}
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

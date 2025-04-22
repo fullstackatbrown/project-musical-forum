@@ -1,5 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Karantina } from "next/font/google";
+import { Kadwa } from "next/font/google";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -9,6 +13,18 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const karantina = Karantina({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-karantina",
+});
+
+const kadwa = Kadwa({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-kadwa",
 });
 
 export const metadata = {
@@ -26,7 +42,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${karantina.variable} ${kadwa.variable} antialiased`}
       >
         {children}
       </body>
